@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    //添加析构函数
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     //新建用户
     public function create()
     {
@@ -45,12 +56,14 @@ class UsersController extends Controller
     //编辑用户资料
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     //进行用户资料更新
     public function update(User $user, Request $request)
     {
+        $this->authorize('update', $user);
         $this->validate($request, [
             'name' => 'required|max:50',
             'password' => 'required|confirmed|min:6'
