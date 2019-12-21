@@ -34,6 +34,8 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+        //添加登陆态
+        Auth::login($user);
         //添加注册成功的信息提示
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
         //返回注册信息
