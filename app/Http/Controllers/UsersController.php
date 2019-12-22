@@ -10,12 +10,21 @@ class UsersController extends Controller
     //添加析构函数
     public function __construct()
     {
+        //登陆的用户
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
+            'except' => ['show', 'create', 'store', 'index']
         ]);
+        //未登录的用户能访问的页面
         $this->middleware('guest', [
             'only' => ['create']
         ]);
+    }
+
+    //查看所有用户
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index', compact('users'));
     }
 
     //新建用户
