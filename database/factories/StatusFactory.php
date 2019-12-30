@@ -4,6 +4,7 @@
 
 use App\Model;
 use Faker\Generator as Faker;
+use Faker\Factory;
 
 $factory->define(App\Models\Status::class, function (Faker $faker) {
     $date_time = $faker->date . ' ' . $faker->time;
