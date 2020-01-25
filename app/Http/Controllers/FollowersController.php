@@ -34,9 +34,4 @@ class FollowersController extends Controller
 
         return redirect()->route('users.show', $user->id);
     }
-
-    public function follow(User $currentUser, User $user)
-    {
-        return $currentUser->id !== $user->id;
-    }
 }

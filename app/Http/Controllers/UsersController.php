@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Mail;
 use App\Models\User;
+use App\Models\Followers;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
